@@ -3,25 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【你的名字】 - 个人主页</title>
-    <meta name="description" content="【这里写一段关于你自己的简短描述】">
-    <link rel="stylesheet" href="style.css">
+    <title>邹家华 - 个人学术主页</title>
+    <meta name="description" content="西安建筑科技大学力学专业在读博士生，研究方向为先进材料、多物理场仿真与文物保护技术。">
+    <!-- 引入与示例相同的字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- 引入图标库 (Feather Icons) -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        /* --- 全局样式与变量 (仿照示例风格) --- */
+        :root {
+            --bg-color: #FDFBF5; /* 主背景色 */
+            --card-bg: #FFFFFF; /* 卡片背景色 */
+            --primary-accent: #C1A38B; /* 主题色/链接色 */
+            --text-heading: #6A5A4F; /* 标题颜色 */
+            --text-body: #4F4A45; /* 正文颜色 */
+            --text-meta: #9ca3af; /* 元信息/辅助文字颜色 */
+            --footer-bg: #4F4A45; /* 页脚背景 */
+            
+            --border-radius: 0.75rem; /* 圆角大小 */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-body);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- 标题与分区 --- */
+        .section-wrapper {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-heading);
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--text-heading);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .card-title a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+        .card-title a:hover {
+            color: var(--primary-accent);
+        }
+
+        /* --- 头部导航 --- */
+        .header {
+            background-color: rgba(253, 251, 245, 0.8); /* 半透明背景 */
+            backdrop-filter: blur(10px); /* 背景模糊效果 */
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: var(--text-body);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-body);
+            font-weight: 500;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-bottom-color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-accent);
+            border-bottom-color: var(--primary-accent);
+        }
+
+        /* --- 欢迎区域 (Hero) --- */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            color: var(--text-heading);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-body);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px; /* 胶囊形状按钮 */
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #a98c75; /* 主题色的深色悬停效果 */
+            transform: translateY(-2px);
+        }
+
+        /* --- 内容卡片 --- */
+        .content-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .content-card:not(.project-card):hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* --- 网格布局 --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- 关于我 --- */
+        .about-card {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--bg-color);
+            flex-shrink: 0;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+        .about-text h3 { margin-bottom: 0.5rem; }
+        .about-text p { font-size: 1.1rem; }
+        
+        /* --- 研究方向 --- */
+        .research-card {
+            text-align: center;
+        }
+        .research-card .icon {
+            color: var(--primary-accent);
+            margin-bottom: 1rem;
+        }
+        .research-card h3 {
+            font-size: 1.25rem;
+            color: var(--text-heading);
+        }
+
+        /* --- 学术发表 --- */
+        .publication-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .publication-item {
+            padding: 25px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+        .publication-item p {
+            margin: 0.5rem 0 0;
+            color: var(--text-body);
+        }
+        .publication-title {
+            font-weight: 700;
+            color: var(--text-heading);
+            font-size: 1.1rem;
+        }
+        .publication-authors {
+            margin: 0.25rem 0 !important;
+        }
+        .publication-meta {
+            font-style: italic;
+            color: var(--text-meta);
+        }
+        .publication-links {
+            margin-top: 1rem;
+        }
+        .publication-links a {
+            margin-right: 15px;
+            color: var(--primary-accent);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .publication-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* --- 荣誉奖励 --- */
+        .awards-list {
+            list-style: none;
+            padding: 0;
+            columns: 2;
+            gap: 20px;
+        }
+        .awards-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        .awards-list .icon {
+            color: var(--primary-accent);
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        /* --- 项目卡片 --- */
+        .project-card {
+            padding: 0; /* 图片填满顶部，所以内边距设为0 */
+            display: flex;
+            flex-direction: column;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-card img {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-info p {
+            flex-grow: 1;
+        }
+
+        .btn-project {
+            display: inline-block;
+            align-self: flex-start;
+            background-color: var(--text-heading);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-project:hover {
+            background-color: var(--text-body);
+        }
+
+        /* --- 联系我 --- */
+        .contact-card {
+            text-align: center;
+        }
+        .contact-card p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .email a {
+            font-size: 1.2rem;
+            color: var(--primary-accent);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+        .email a:hover {
+            color: var(--text-heading);
+        }
+
+        /* --- 页脚 --- */
+        .footer {
+            background-color: var(--footer-bg);
+            color: var(--bg-color);
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* --- 响应式设计 --- */
+        @media (max-width: 768px) {
+            .header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav ul {
+                justify-content: center;
+                gap: 10px 15px;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .about-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+            .awards-list {
+                columns: 1;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="#">【你的名字】</a>
+                <a href="#">邹家华</a>
             </div>
             <nav class="nav">
                 <ul>
                     <li><a href="#about" class="nav-link">关于我</a></li>
-                    <li><a href="#blog" class="nav-link">博客</a></li>
-                    <li><a href="#projects" class="nav-link">项目</a></li>
+                    <li><a href="#research" class="nav-link">研究方向</a></li>
+                    <li><a href="#publications" class="nav-link">学术发表</a></li>
+                    <li><a href="#awards" class="nav-link">荣誉奖励</a></li>
+                    <li><a href="#projects" class="nav-link">项目与经历</a></li>
                     <li><a href="#contact" class="nav-link">联系我</a></li>
                 </ul>
             </nav>
@@ -29,92 +406,146 @@
     </header>
 
     <main>
+        <!-- 欢迎区域 -->
         <section id="hero" class="hero">
             <div class="container">
-                <h1 class="hero-title">你好，我是【你的名字】</h1>
-                <p class="subtitle">【你的职业或身份，例如：一位热情的 Web 开发者、设计师与摄影爱好者】</p>
-                <a href="#projects" class="btn">查看我的作品</a>
+                <h1 class="hero-title">你好，我是邹家华</h1>
+                <p class="subtitle">西安建筑科技大学 在读博士生 | 力学，先进材料与文物保护技术</p>
+                <a href="#publications" class="btn">查看我的发表</a>
             </div>
         </section>
 
+        <!-- 关于我 -->
         <section id="about" class="section-wrapper">
             <div class="container">
                 <h2 class="section-title">关于我</h2>
                 <div class="content-card about-card">
-                    <img src="https://via.placeholder.com/150/C1A38B/FFFFFF" alt="你的头像" class="avatar">
+                    <img src="https://placehold.co/150x150/C1A38B/FFFFFF?text=邹" alt="邹家华的头像" class="avatar">
                     <div class="about-text">
-                        <h3 class="card-title">【你的名字】</h3>
-                        <p>【在这里详细介绍你自己。你可以谈论你的专业背景、技能、兴趣爱好，或者任何你想分享的故事。试着让这段文字生动有趣，展现你的个性。例如：我专注于前端开发，对创造美观且用户友好的界面充满热情。在业余时间，我喜欢探索城市角落，用相机记录生活中的点滴美好。】</p>
+                        <h3 class="card-title">邹家华</h3>
+                        <p>我是一名就读于西安建筑科技大学的博士生，主修力学专业。我的研究兴趣主要集中在工程材料的力学性能，特别是应用于土遗址和古建筑修复的先进灌浆材料。我致力于通过多物理场仿真与实验力学相结合的方法，解决文物保护中的关键工程问题。期待与优秀团队合作，共同推动科研进展。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 研究方向 -->
+        <section id="research" class="section-wrapper" style="background-color: #f9f7f2;">
+            <div class="container">
+                <h2 class="section-title">研究方向</h2>
+                <div class="grid-layout">
+                    <div class="content-card research-card">
+                        <i data-feather="cpu" class="icon" width="48" height="48"></i>
+                        <h3>多物理场仿真</h3>
+                        <p>利用 COMSOL, Ansys 等工具，对材料在热-力-湿耦合场下的力学行为进行数值模拟与分析。</p>
+                    </div>
+                    <div class="content-card research-card">
+                        <i data-feather="box" class="icon" width="48" height="48"></i>
+                        <h3>先进工程材料</h3>
+                        <p>研发与应用新型修复材料，如微相变复合材料(MPCM)，研究其温度控制与抑裂性能。</p>
+                    </div>
+                    <div class="content-card research-card">
+                        <i data-feather="shield" class="icon" width="48" height="48"></i>
+                        <h3>文物保护力学</h3>
+                        <p>将断裂力学、损伤力学等理论应用于古代遗址（如高昌故城）的病害机理分析与加固技术研究。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="blog" class="section-wrapper">
+        <!-- 学术发表 -->
+        <section id="publications" class="section-wrapper">
             <div class="container">
-                <h2 class="section-title">我的博客</h2>
-                <div class="grid-layout">
-                    <article class="content-card">
-                        <h3 class="card-title"><a href="#">博客文章标题一</a></h3>
-                        <p class="post-meta">发布于 2025年7月23日</p>
-                        <p>这是第一篇博客文章的摘要。你可以在这里简要介绍文章内容，吸引读者点击阅读全文...</p>
-                        <a href="#" class="read-more">阅读全文 &rarr;</a>
-                    </article>
-                    <article class="content-card">
-                        <h3 class="card-title"><a href="#">博客文章标题二</a></h3>
-                        <p class="post-meta">发布于 2025年7月15日</p>
-                        <p>这是第二篇博客文章的摘要。分享你的知识、经验或见闻，让更多人了解你的想法...</p>
-                        <a href="#" class="read-more">阅读全文 &rarr;</a>
-                    </article>
-                    <article class="content-card">
-                        <h3 class="card-title"><a href="#">博客文章标题三</a></h3>
-                        <p class="post-meta">发布于 2025年7月1日</p>
-                        <p>这是第三篇博客文章的摘要。无论是技术分享、生活感悟还是旅行日记，这里都是你发声的平台...</p>
-                        <a href="#" class="read-more">阅读全文 &rarr;</a>
-                    </article>
+                <h2 class="section-title">学术发表</h2>
+                <div class="content-card">
+                    <ul class="publication-list">
+                        <li class="publication-item">
+                            <p class="publication-title">Research on the Effectiveness of Temperature Control with MPCM Grouting for Cracks in the Earthen Ruins of Gaochang Ancient City</p>
+                            <p class="publication-authors"><strong>Zou, Jiahua</strong>, et al.</p>
+                            <p class="publication-meta">Conference / Journal Name, 20XX</p>
+                            <div class="publication-links">
+                                <a href="#" target="_blank">下载PDF</a>
+                                <a href="#" target="_blank">引用</a>
+                            </div>
+                        </li>
+                        <li class="publication-item">
+                           <p class="publication-title">Research on Temperature Control and Crack Suppression of MPCM Grouting Material for Repairing Hollow Ground Layer</p>
+                           <p class="publication-authors"><strong>Zou, Jiahua</strong>, et al.</p>
+                           <p class="publication-meta">Conference / Journal Name, 20XX</p>
+                           <div class="publication-links">
+                                <a href="#" target="_blank">下载PDF</a>
+                            </div>
+                        </li>
+                        <li class="publication-item">
+                           <p class="publication-title">一种用于木结构梁柱节点的摩擦耗能装置</p>
+                           <p class="publication-authors"><strong>邹家华</strong>, 等.</p>
+                           <p class="publication-meta">专利号 / Journal Name, 20XX</p>
+                           <div class="publication-links">
+                                <a href="#" target="_blank">查看详情</a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
 
+        <!-- 荣誉奖励 -->
+        <section id="awards" class="section-wrapper" style="background-color: #f9f7f2;">
+            <div class="container">
+                <h2 class="section-title">荣誉奖励</h2>
+                <div class="content-card">
+                    <ul class="awards-list">
+                        <li><i data-feather="award" class="icon"></i><span>2020 国家励志奖学金</span></li>
+                        <li><i data-feather="award" class="icon"></i><span>2019 国家励志奖学金</span></li>
+                        <li><i data-feather="award" class="icon"></i><span>西安建筑科技大学2019-2020学年“争先创优”学生一等奖</span></li>
+                        <li><i data-feather="award" class="icon"></i><span>西安建筑科技大学2020-2021学年“争先创优”学生二等奖</span></li>
+                        <li><i data-feather="award" class="icon"></i><span>西安建筑科技大学2018-2019学年“争先创优”学生二等奖</span></li>
+                        <li><i data-feather="award" class="icon"></i><span>第十二届全国大学生数学竞赛三等奖</span></li>
+                        <li><i data-feather="award" class="icon"></i><span>第十一届全国大学生数学竞赛三等奖</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目与经历 -->
         <section id="projects" class="section-wrapper">
             <div class="container">
-                <h2 class="section-title">项目展示</h2>
+                <h2 class="section-title">项目与经历</h2>
                 <div class="grid-layout">
-                    <div class="content-card project-card">
-                        <img src="https://via.placeholder.com/400x250/A5D6A7/4F4A45?text=项目一" alt="项目一的图片">
+                    <div class="project-card">
+                        <img src="https://placehold.co/400x250/A5D6A7/4F4A45?text=科研训练" alt="科研训练项目">
                         <div class="project-info">
-                            <h3 class="card-title">项目名称一</h3>
-                            <p>这里是关于这个项目的简短描述。你可以说明项目使用的技术、实现的功能等。</p>
+                            <h3 class="card-title">本科生科研训练(SSRT)计划</h3>
+                            <p>作为项目负责人，参与并完成了一项校级本科生科研训练计划，培养了独立的科研能力和项目管理经验。</p>
                             <a href="#" target="_blank" class="btn-project">查看详情</a>
                         </div>
                     </div>
-                    <div class="content-card project-card">
-                        <img src="https://via.placeholder.com/400x250/90CAF9/4F4A45?text=项目二" alt="项目二的图片">
+                    <div class="project-card">
+                        <img src="https://placehold.co/400x250/90CAF9/4F4A45?text=学生工作" alt="学生工作经历">
                         <div class="project-info">
-                            <h3 class="card-title">项目名称二</h3>
-                            <p>这里是关于这个项目的简短描述。突出项目的亮点和你的贡献。</p>
-                            <a href="#" target="_blank" class="btn-project">查看详情</a>
+                            <h3 class="card-title">学习委员 (2018-2022)</h3>
+                            <p>本科四年期间担任班级学习委员，负责学风建设、信息传达和师生沟通，具备良好的组织协调能力和服务意识。</p>
                         </div>
                     </div>
-                    <div class="content-card project-card">
-                        <img src="https://via.placeholder.com/400x250/FFCC80/4F4A45?text=项目三" alt="项目三的图片">
+                     <div class="project-card">
+                        <img src="https://placehold.co/400x250/FFCC80/4F4A45?text=专业技能" alt="专业技能">
                         <div class="project-info">
-                            <h3 class="card-title">项目名称三</h3>
-                            <p>这里是关于这个项目的简短描述。可以是个人项目、团队合作或任何你想展示的作品。</p>
-                            <a href="#" target="_blank" class="btn-project">查看详情</a>
+                            <h3 class="card-title">专业软件技能</h3>
+                            <p>熟练掌握 Ansys, COMSOL, MATLAB, AutoCAD, OriginPro, Office 等科研和办公软件，能够高效地进行数据处理、数值模拟和可视化呈现。</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section-wrapper">
+        <!-- 联系我 -->
+        <section id="contact" class="section-wrapper" style="background-color: #f9f7f2;">
             <div class="container">
                  <h2 class="section-title">联系我</h2>
                  <div class="content-card contact-card">
-                    <p>我非常乐于与您交流，如果您有任何问题或合作意向，请通过以下方式联系我：</p>
+                    <p>我非常乐于与同行交流，如果您对我的研究感兴趣或有合作意向，请通过以下方式联系我：</p>
                     <p class="email">
-                        <a href="mailto:【你的邮箱地址】">【你的邮箱地址】</a>
+                        <a href="mailto:zoujiahua@xauat.edu.cn">zoujiahua@xauat.edu.cn</a>
                     </p>
                  </div>
             </div>
@@ -123,9 +554,14 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 【你的名字】. 版权所有.</p>
+            <p>&copy; 2025 邹家华. 版权所有.</p>
         </div>
     </footer>
+    
+    <script>
+      // 用于渲染页面中的图标
+      feather.replace()
+    </script>
 
 </body>
 </html>
