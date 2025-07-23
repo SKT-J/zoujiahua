@@ -1,124 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【你的名字】 - 个人主页</title>
-    <meta name="description" content="【这里写一段关于你自己的简短描述】">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>张三 – 个人主页</title>
+  <meta name="description" content="你好，我是张三，一名前端开发爱好者，热衷于创意设计与开源项目。">
+  
+  <!-- 引入自定义样式 -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- 从 Google Fonts 加载思源黑体 -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
 </head>
+
 <body>
+  <header>
+    <h1>欢迎来到我的个人主页</h1>
+    <p>我是张三，一名前端开发爱好者。</p>
+  </header>
 
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="#">【你的名字】</a>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#about">关于我</a></li>
-                    <li><a href="#blog">博客</a></li>
-                    <li><a href="#projects">项目</a></li>
-                    <li><a href="#contact">联系我</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <main>
+    <section>
+      <h2>关于我</h2>
+      <p>我喜欢写代码、做开源，也热爱摄影和旅游。</p>
+    </section>
+  </main>
 
-    <main>
-        <section id="hero" class="hero">
-            <div class="container">
-                <h1>你好，我是【你的名字】</h1>
-                <p class="subtitle">【你的职业或身份，例如：一位热情的 Web 开发者、设计师与摄影爱好者】</p>
-                <a href="#projects" class="btn">查看我的作品</a>
-            </div>
-        </section>
-
-        <section id="about" class="about">
-            <div class="container">
-                <h2>关于我</h2>
-                <div class="about-content">
-                    <img src="https://via.placeholder.com/150" alt="你的头像" class="avatar">
-                    <p>【在这里详细介绍你自己。你可以谈论你的专业背景、技能、兴趣爱好，或者任何你想分享的故事。试着让这段文字生动有趣，展现你的个性。例如：我专注于前端开发，对创造美观且用户友好的界面充满热情。在业余时间，我喜欢探索城市角落，用相机记录生活中的点滴美好。】</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="blog" class="blog">
-            <div class="container">
-                <h2>我的博客</h2>
-                <div class="blog-grid">
-                    <article class="blog-post">
-                        <h3><a href="#">博客文章标题一</a></h3>
-                        <p class="post-meta">发布于 2025年7月23日</p>
-                        <p>这是第一篇博客文章的摘要。你可以在这里简要介绍文章内容，吸引读者点击阅读全文...</p>
-                        <a href="#" class="read-more">阅读全文 &rarr;</a>
-                    </article>
-                    <article class="blog-post">
-                        <h3><a href="#">博客文章标题二</a></h3>
-                        <p class="post-meta">发布于 2025年7月15日</p>
-                        <p>这是第二篇博客文章的摘要。分享你的知识、经验或见闻，让更多人了解你的想法...</p>
-                        <a href="#" class="read-more">阅读全文 &rarr;</a>
-                    </article>
-                    <article class="blog-post">
-                        <h3><a href="#">博客文章标题三</a></h3>
-                        <p class="post-meta">发布于 2025年7月1日</p>
-                        <p>这是第三篇博客文章的摘要。无论是技术分享、生活感悟还是旅行日记，这里都是你发声的平台...</p>
-                        <a href="#" class="read-more">阅读全文 &rarr;</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="projects">
-            <div class="container">
-                <h2>项目展示</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <img src="https://via.placeholder.com/400x250/A5D6A7/FFFFFF?text=项目一" alt="项目一的图片">
-                        <div class="project-info">
-                            <h3>项目名称一</h3>
-                            <p>这里是关于这个项目的简短描述。你可以说明项目使用的技术、实现的功能等。</p>
-                            <a href="#" target="_blank" class="btn-project">查看详情</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img src="https://via.placeholder.com/400x250/90CAF9/FFFFFF?text=项目二" alt="项目二的图片">
-                        <div class="project-info">
-                            <h3>项目名称二</h3>
-                            <p>这里是关于这个项目的简短描述。突出项目的亮点和你的贡献。</p>
-                            <a href="#" target="_blank" class="btn-project">查看详情</a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img src="https://via.placeholder.com/400x250/FFCC80/FFFFFF?text=项目三" alt="项目三的图片">
-                        <div class="project-info">
-                            <h3>项目名称三</h3>
-                            <p>这里是关于这个项目的简短描述。可以是个人项目、团队合作或任何你想展示的作品。</p>
-                            <a href="#" target="_blank" class="btn-project">查看详情</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2>联系我</h2>
-                <p>我非常乐于与您交流，如果您有任何问题或合作意向，请通过以下方式联系我：</p>
-                <p class="email">
-                    <a href="mailto:【你的邮箱地址】">【你的邮箱地址】</a>
-                </p>
-                </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 【你的名字】. 版权所有.</p>
-        </div>
-    </footer>
-
+  <footer>
+    <p>© 2025 张三. 版权所有.</p>
+  </footer>
 </body>
 </html>
