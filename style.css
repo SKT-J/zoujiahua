@@ -1,49 +1,285 @@
-/* 全局重置与字体 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* --- 全局样式与变量 --- */
+:root {
+    --primary-color: #3498db; /* 主题色 */
+    --secondary-color: #2c3e50; /* 深色文字/背景 */
+    --light-gray: #f4f4f4; /* 浅灰色背景 */
+    --text-color: #333; /* 主要文字颜色 */
+    --text-color-light: #555;
+    --border-radius: 5px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 body {
-  font-family: 'Noto Sans SC', sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background-color: #f9f9f9;
-  padding: 20px;
+    font-family: 'Noto Sans SC', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #ffffff;
 }
 
-/* 头部样式 */
-header {
-  text-align: center;
-  padding: 40px 0;
-}
-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-header p {
-  font-size: 1.2rem;
-  color: #666;
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* 内容区 */
-main {
-  max-width: 800px;
-  margin: 0 auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-main h2 {
-  margin-bottom: 10px;
-  color: #444;
+h1, h2, h3 {
+    color: var(--secondary-color);
+    font-weight: 700;
 }
 
-/* 页脚样式 */
-footer {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 0.9rem;
-  color: #aaa;
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+}
+
+section {
+    padding: 60px 0;
+}
+
+/* --- 头部导航 --- */
+.header {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.nav ul li {
+    margin-left: 25px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: var(--text-color-light);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* --- 欢迎区域 (Hero) --- */
+.hero {
+    background-color: var(--light-gray);
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-color-light);
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #2980b9; /* 主题色的深色悬停效果 */
+}
+
+/* --- 关于我 --- */
+.about {
+    background-color: #ffffff;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--box-shadow);
+}
+
+.about-content p {
+    flex: 1;
+    font-size: 1.1rem;
+    color: var(--text-color-light);
+}
+
+/* --- 博客 --- */
+.blog {
+    background-color: var(--light-gray);
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.blog-post {
+    background: #fff;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
+}
+
+.blog-post:hover {
+    transform: translateY(-5px);
+}
+
+.blog-post h3 a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.blog-post .post-meta {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* --- 项目展示 --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: #fff;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    display: block;
+}
+
+.project-info {
+    padding: 20px;
+}
+
+.project-info h3 {
+    margin-top: 0;
+}
+
+.btn-project {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-project:hover {
+    background-color: #34495e;
+}
+
+
+/* --- 联系我 --- */
+.contact {
+    text-align: center;
+    background-color: var(--light-gray);
+}
+
+.contact .email a {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* --- 页脚 --- */
+.footer {
+    background-color: var(--secondary-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+
+/* --- 响应式设计 --- */
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .nav ul li {
+        margin-left: 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
 }
