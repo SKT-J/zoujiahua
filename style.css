@@ -1,20 +1,28 @@
-/* --- 全局样式与变量 --- */
+/* --- 全局样式与变量 (仿照示例风格) --- */
 :root {
-    --primary-color: #3498db; /* 主题色 */
-    --secondary-color: #2c3e50; /* 深色文字/背景 */
-    --light-gray: #f4f4f4; /* 浅灰色背景 */
-    --text-color: #333; /* 主要文字颜色 */
-    --text-color-light: #555;
-    --border-radius: 5px;
-    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --bg-color: #FDFBF5; /* 主背景色 */
+    --card-bg: #FFFFFF; /* 卡片背景色 */
+    --primary-accent: #C1A38B; /* 主题色/链接色 */
+    --text-heading: #6A5A4F; /* 标题颜色 */
+    --text-body: #4F4A45; /* 正文颜色 */
+    --text-meta: #9ca3af; /* 元信息/辅助文字颜色 */
+    --footer-bg: #4F4A45; /* 页脚背景 */
+    
+    --border-radius: 0.75rem; /* 圆角大小 */
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: 'Noto Sans SC', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-body);
     margin: 0;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: #ffffff;
+    line-height: 1.7;
 }
 
 .container {
@@ -23,40 +31,56 @@ body {
     padding: 0 20px;
 }
 
-h1, h2, h3 {
-    color: var(--secondary-color);
+/* --- 标题与分区 --- */
+.section-wrapper {
+    padding: 60px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--text-heading);
+    margin-bottom: 50px;
     font-weight: 700;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.2rem;
+.card-title {
+    font-size: 1.5rem;
+    color: var(--text-heading);
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
-
-section {
-    padding: 60px 0;
+.card-title a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+.card-title a:hover {
+    color: var(--primary-accent);
 }
 
 /* --- 头部导航 --- */
 .header {
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    background-color: rgba(253, 251, 245, 0.8); /* 半透明背景 */
+    backdrop-filter: blur(10px); /* 背景模糊效果 */
+    -webkit-backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .logo a {
     text-decoration: none;
-    color: var(--secondary-color);
+    color: var(--text-body);
     font-size: 1.5rem;
     font-weight: 700;
 }
@@ -66,62 +90,74 @@ section {
     padding: 0;
     list-style: none;
     display: flex;
+    gap: 30px;
 }
 
-.nav ul li {
-    margin-left: 25px;
-}
-
-.nav ul li a {
+.nav-link {
     text-decoration: none;
-    color: var(--text-color-light);
-    font-weight: 400;
-    transition: color 0.3s ease;
+    color: var(--text-body);
+    font-weight: 500;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-bottom-color 0.3s;
 }
 
-.nav ul li a:hover {
-    color: var(--primary-color);
+.nav-link:hover {
+    color: var(--primary-accent);
+    border-bottom-color: var(--primary-accent);
 }
 
 /* --- 欢迎区域 (Hero) --- */
 .hero {
-    background-color: var(--light-gray);
     text-align: center;
-    padding: 100px 0;
+    padding: 80px 0;
 }
 
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
+.hero-title {
+    font-size: 3.5rem;
+    color: var(--text-heading);
+    margin-bottom: 1rem;
 }
 
-.hero .subtitle {
-    font-size: 1.2rem;
-    color: var(--text-color-light);
-    margin-bottom: 30px;
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--text-body);
+    margin-bottom: 2rem;
+    font-weight: 300;
 }
 
 .btn {
     display: inline-block;
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: var(--border-radius);
+    background-color: var(--primary-accent);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px; /* 胶囊形状按钮 */
     text-decoration: none;
     font-weight: 700;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #2980b9; /* 主题色的深色悬停效果 */
+    background-color: #a98c75; /* 主题色的深色悬停效果 */
+    transform: translateY(-2px);
+}
+
+/* --- 内容卡片 --- */
+.content-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
 }
 
 /* --- 关于我 --- */
-.about {
-    background-color: #ffffff;
-}
-
-.about-content {
+.about-card {
     display: flex;
     align-items: center;
     gap: 40px;
@@ -132,153 +168,127 @@ section {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: var(--box-shadow);
+    border: 5px solid var(--bg-color);
 }
 
-.about-content p {
+.about-text {
     flex: 1;
-    font-size: 1.1rem;
-    color: var(--text-color-light);
 }
+.about-text h3 { margin-bottom: 0.5rem; }
+.about-text p { font-size: 1.1rem; }
 
-/* --- 博客 --- */
-.blog {
-    background-color: var(--light-gray);
-}
-
-.blog-grid {
+/* --- 博客与项目网格布局 --- */
+.grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
 }
 
-.blog-post {
-    background: #fff;
-    padding: 25px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease;
-}
-
-.blog-post:hover {
-    transform: translateY(-5px);
-}
-
-.blog-post h3 a {
-    color: var(--secondary-color);
-    text-decoration: none;
-}
-
-.blog-post .post-meta {
+.post-meta {
     font-size: 0.9rem;
-    color: #999;
+    color: var(--text-meta);
     margin-bottom: 15px;
 }
 
 .read-more {
-    color: var(--primary-color);
+    color: var(--primary-accent);
     text-decoration: none;
     font-weight: 700;
+    transition: color 0.3s;
+}
+.read-more:hover {
+    color: var(--text-heading);
 }
 
-/* --- 项目展示 --- */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
+/* --- 项目卡片 --- */
 .project-card {
-    background: #fff;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
+    padding: 0; /* 图片填满顶部，所以内边距设为0 */
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card img {
     width: 100%;
-    display: block;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
 }
 
 .project-info {
-    padding: 20px;
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
-
-.project-info h3 {
-    margin-top: 0;
+.project-info p {
+    flex-grow: 1;
 }
 
 .btn-project {
     display: inline-block;
-    background-color: var(--secondary-color);
+    align-self: flex-start;
+    background-color: var(--text-heading);
     color: #fff;
     padding: 8px 18px;
-    border-radius: var(--border-radius);
+    border-radius: 50px;
     text-decoration: none;
     font-size: 0.9rem;
-    margin-top: 10px;
+    margin-top: 15px;
     transition: background-color 0.3s ease;
 }
 
 .btn-project:hover {
-    background-color: #34495e;
+    background-color: var(--text-body);
 }
-
 
 /* --- 联系我 --- */
-.contact {
+.contact-card {
     text-align: center;
-    background-color: var(--light-gray);
 }
-
-.contact .email a {
+.contact-card p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+.email a {
     font-size: 1.2rem;
-    color: var(--primary-color);
+    color: var(--primary-accent);
     text-decoration: none;
     font-weight: 700;
+    transition: color 0.3s;
+}
+.email a:hover {
+    color: var(--text-heading);
 }
 
 /* --- 页脚 --- */
 .footer {
-    background-color: var(--secondary-color);
-    color: #fff;
+    background-color: var(--footer-bg);
+    color: var(--bg-color);
     text-align: center;
-    padding: 20px 0;
+    padding: 25px 0;
+    margin-top: 40px;
 }
 
 .footer p {
     margin: 0;
     font-size: 0.9rem;
+    font-weight: 300;
 }
-
 
 /* --- 响应式设计 --- */
 @media (max-width: 768px) {
     .header .container {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
     }
-
     .nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+        gap: 20px;
     }
-
-    .nav ul li {
-        margin-left: 0;
+    .hero-title {
+        font-size: 2.8rem;
     }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .about-content {
+    .about-card {
         flex-direction: column;
         text-align: center;
     }
